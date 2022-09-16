@@ -7,11 +7,12 @@ async function run(): Promise<void> {
     const logData: string = core.getInput('logData')
     core.info(`Appending logs to existing file if created already or create and write data. Fileame: ${fileName}`)
 
-    fs.writeFileSync(fileName, new Date().toTimeString(), {flag: 'a+',})
-    fs.writeFileSync(fileName, logData, {flag: 'a+',})
-    
+    fs.writeFileSync(fileName, new Date().toTimeString().concat('\n'), {flag: 'a+',})
+    fs.writeFileSync(fileName, logData.concat('\n'), {flag: 'a+',})
+
     const contents = fs.readFileSync(fileName, 'utf-8');
     core.setOutput('logs', contents)
+
   } catch (error) {
     if (error instanceof Error) core.setFailed(error.message)
   }
