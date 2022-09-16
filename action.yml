@@ -1,6 +1,9 @@
 name: 'log-to-file'
 description: 'Write logs to file'
 author: 'dwarak91'
+branding:
+  icon: file-text
+  color: purple
 inputs:
   filename:
     required: true
