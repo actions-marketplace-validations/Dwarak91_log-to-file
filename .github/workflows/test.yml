@@ -22,4 +22,4 @@ jobs:
       - uses: ./
         with:
           filename: test.txt
-          logdata: 'sample data to test the write'
+          logdata: 'sample data to test the write log'
