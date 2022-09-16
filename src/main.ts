@@ -1,5 +1,5 @@
 import * as core from '@actions/core'
-import {wait} from './wait'
+import * as fs from 'fs'
 
 async function run(): Promise<void> {
   try {
@@ -7,10 +7,10 @@ async function run(): Promise<void> {
     const logData: string = core.getInput('logData')
     core.info(`Appending logs to existing file if created already or create and write data. Fileame: ${fileName}`)
 
-    writeFileSync(fileName, new Date().toTimeString(), {flag: 'a+',})
-    writeFileSync(fileName, logData, {flag: 'a+',})
+    fs.writeFileSync(fileName, new Date().toTimeString(), {flag: 'a+',})
+    fs.writeFileSync(fileName, logData, {flag: 'a+',})
     
-    const contents = readFileSync(filename, 'utf-8');
+    const contents = fs.readFileSync(fileName, 'utf-8');
     core.setOutput('logs', contents)
   } catch (error) {
     if (error instanceof Error) core.setFailed(error.message)
