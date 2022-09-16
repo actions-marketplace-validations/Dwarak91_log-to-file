@@ -47,8 +47,8 @@ function run() {
             const fileName = core.getInput('fileName');
             const logData = core.getInput('logData');
             core.info(`Appending logs to existing file if created already or create and write data. Fileame: ${fileName}`);
-            fs.writeFileSync(fileName, new Date().toTimeString(), { flag: 'a+', });
-            fs.writeFileSync(fileName, logData, { flag: 'a+', });
+            fs.writeFileSync(fileName, new Date().toTimeString() + '\n', { flag: 'a+', });
+            fs.writeFileSync(fileName, logData + '\n', { flag: 'a+', });
             const contents = fs.readFileSync(fileName, 'utf-8');
             core.setOutput('logs', contents);
         }
