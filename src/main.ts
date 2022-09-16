@@ -3,14 +3,15 @@ import {wait} from './wait'
 
 async function run(): Promise<void> {
   try {
-    const ms: string = core.getInput('milliseconds')
-    core.debug(`Waiting ${ms} milliseconds ...`) // debug is only output if you set the secret `ACTIONS_STEP_DEBUG` to true
+    const fileName: string = core.getInput('fileName')
+    const logData: string = core.getInput('logData')
+    core.info(`Appending logs to existing file if created already or create and write data. Fileame: ${fileName}`)
 
-    core.debug(new Date().toTimeString())
-    await wait(parseInt(ms, 10))
-    core.debug(new Date().toTimeString())
-
-    core.setOutput('time', new Date().toTimeString())
+    writeFileSync(fileName, new Date().toTimeString(), {flag: 'a+',})
+    writeFileSync(fileName, logData, {flag: 'a+',})
+    
+    const contents = readFileSync(filename, 'utf-8');
+    core.setOutput('logs', contents)
   } catch (error) {
     if (error instanceof Error) core.setFailed(error.message)
   }
