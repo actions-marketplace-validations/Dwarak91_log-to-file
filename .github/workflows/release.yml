@@ -29,6 +29,6 @@ jobs:
         
       - name: Publish action 
 #         uses: actions-on-packages/package-action@add-release-workflow
-        uses: actions-on-packages/package-action@0.4.1
+        uses: actions-on-packages/package-action@0.5.0
 #        with: 
 #            path: 'dist/'
